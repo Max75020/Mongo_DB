@@ -1,0 +1,68 @@
+// ACTIVITE 22 : Récupérer les produits avec les catégories associées Récupérer les produits de la catégorie « Electronics » ainsi que les données pour la catégorie liée à chaque élément. M’envoyer une capture d’écran.
+
+db.category.aggregate([
+	{
+		// La clause $lookup effectue une jointure de type LEFT OUTER JOIN entre la collection "category" et la collection "products"
+		// sur le champ "_id" dans "category" et le champ "category" dans "products".
+		// Les documents joints de la collection "products" sont ajoutés dans un nouveau champ appelé "products" dans chaque document de la collection "category".
+	  $lookup: {
+		from: "products",
+		localField: "_id",
+		foreignField: "category",
+		as: "products"
+		}
+	},
+	{
+		// La clause $project transforme les documents en incluant, excluant ou modifiant certains champs.
+		// Ici, elle exclut le champ "_id", inclut le champ "name", et transforme le champ "products" en utilisant l'opérateur $map.
+	  $project: {
+		_id: 0,
+		name: 1,
+		products: {
+				// L'opérateur $map applique une expression à chaque élément d'un tableau et renvoie un tableau avec les résultats.
+				// Ici, il est utilisé pour transformer chaque élément du tableau "products" en un nouvel objet qui ne contient que les champs "name" et "price".
+		  $map: {
+			input: "$products",
+			as: "product",
+			in: {
+			  name: "$$product.name",
+			  price: "$$product.price",
+					}
+				}
+			}
+		}
+	}
+])
+
+
+db.category.aggregate([
+	{
+		// $lookup => jointure de type LEFT OUTER JOIN "category" et "products"
+	  $lookup: {
+		from: "products",
+		localField: "_id",
+		foreignField: "category",
+		as: "products"
+		}
+	},
+	{
+		//$project transforme les documents en incluant, excluant ou modifiant certains champs.
+	  $project: {
+			// champ "_id" exclu 
+		_id: 0,
+			// champ "name" inclus
+		name: 1,
+		products: {
+				// L'opérateur $map => transforme chaque élément du tableau "products" en un nouvel objet qui ne contient que les champs "name" et "price".
+		  $map: {
+			input: "$products",
+			as: "product",
+			in: {
+			  name: "$$product.name",
+			  price: "$$product.price",
+					}
+				}
+			}
+		}
+	}
+])

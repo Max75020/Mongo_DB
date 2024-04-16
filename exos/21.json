@@ -1,0 +1,2 @@
+// ACTIVITE 21 : Supprimer toutes les commandes Supprimer toutes les commandes sans exception.
+db.orders.deleteMany({});

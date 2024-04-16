@@ -1,0 +1,2 @@
+// ACTIVITE 20 : Supprimer tous les produits d’une catégorie Supprimer tous les produits de la catégorie « Books ». M’envoyer une capture d’écran.
+db.products.deleteMany({category: ObjectId("661d3ca2d859124a820e87c9")})

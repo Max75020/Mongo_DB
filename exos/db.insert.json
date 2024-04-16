@@ -1,0 +1,130 @@
+db.products.insertMany(
+[
+	{
+		"name": "iPhone 12",
+		"description": "Apple's flagship smartphone",
+		"price": 1099.99,
+		"category": ObjectId("661d3c91d859124a820e87c8")
+	},
+	{
+		"name": "MacBook Air",
+		"description": "Thin and light laptop from Apple",
+		"price": 1299.99,
+		"category": ObjectId("661d3c91d859124a820e87c8")
+	},
+	{
+		"name": "The Lord of the Rings Boxed Set",
+		"description": "The complete Lord of the Rings trilogy",
+		"price": 69.99,
+		"category": ObjectId("661d3ca2d859124a820e87c9")
+	},
+	{
+		"name": "Harry Potter and the Philosopher's Stone",
+		"description": "The first book in the Harry Potter series",
+		"price": 12.99,
+		"category": ObjectId("661d3ca2d859124a820e87c9")
+	},
+	{
+		"name": "Levi's 501 Original Fit Jeans",
+		"description": "Classic straight leg jeans from Levi's",
+		"price": 79.99,
+		"category": ObjectId("661d3cb1d859124a820e87ca")
+	},
+	{
+		"name": "Nike Air Max 270",
+		"description": "Comfortable sneakers with a stylish design",
+		"price": 149.99,
+		"category": ObjectId("661d3cb1d859124a820e87ca")
+	}
+]
+)
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('661d3fded859124a820e87d1'),
+    '1': ObjectId('661d3fded859124a820e87d2'),
+    '2': ObjectId('661d3fded859124a820e87d3'),
+    '3': ObjectId('661d3fded859124a820e87d4'),
+    '4': ObjectId('661d3fded859124a820e87d5'),
+    '5': ObjectId('661d3fded859124a820e87d6')
+  }
+}
+db.clients.insertMany(
+[
+	{
+		"nom": "Dupont",
+		"email": "dupont@gmail.com",
+		"adress": "10 rue des Lilas"
+	},
+	{
+		"nom": "Martin",
+		"email": "martin@gmail.com",
+		"adress": "15 avenue de la République"
+	},
+	{
+		"nom": "Dumas",
+		"email": "dumas@gmail.com",
+		"adress": "25 rue de la Paix"
+	}
+]
+)
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('661d4020d859124a820e87d7'),
+    '1': ObjectId('661d4020d859124a820e87d8'),
+    '2': ObjectId('661d4020d859124a820e87d9')
+  }
+}
+db.orders.insertMany(
+[
+	{
+		"client_id": ObjectId("661d4020d859124a820e87d7"),
+		"products": [
+			{
+				"product_id": ObjectId("661d3c91d859124a820e87c8"),
+				"quantity": 2
+			},
+			{
+				"product_id": ObjectId("661d3cb1d859124a820e87ca"),
+				"quantity": 1
+			}
+		],
+		"order_date": {
+			"$date": "2024-04-15T17:00:00.000Z"
+		}
+	},
+	{
+		"client_id": ObjectId("661d4020d859124a820e87d8"),
+		"products": [
+			{
+				"product_id": ObjectId("661d3c91d859124a820e87c8"),
+				"quantity": 3
+			},
+			{
+				"product_id": ObjectId("661d3ca2d859124a820e87c9"),
+				"quantity": 2
+			}
+		],
+		"order_date": {
+			"$date": "2024-04-15T17:00:00.000Z"
+		}
+	},
+	{
+		"client_id": ObjectId("661d4020d859124a820e87d9"),
+		"products": [
+			{
+				"product_id": ObjectId("661d3ca2d859124a820e87c9"),
+				"quantity": 1
+			},
+			{
+				"product_id": ObjectId("661d3cb1d859124a820e87ca"),
+				"quantity": 1
+			}
+		],
+		"order_date": {
+			"$date": "2024-04-15T17:00:00.000Z"
+		}
+	}
+]
+)

@@ -1,0 +1,2 @@
+//ACTIVITE 18 : Remplacer complètement une catégorie Remplacer la catégorie « Clothing » avec : { « name » : « outfit » }
+db.categories.replaceOne({name: "Clothing"}, {name: "outfit"})

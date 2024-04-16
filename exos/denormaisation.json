@@ -1,0 +1,13 @@
+{
+    post: {
+		"_id": ObjectId("60a1fc4b940c3e0f3c3e8dd4"),
+		"title": "My first post",
+		"content": "Lorem ipsum dolor sit amet...",
+         user : {
+			"_id": ObjectId("60a1fbf9940c3e0f3c3e8dd3")
+              "name": "John Doe",
+			"email": "john.doe@example.com",
+			"age": 30
+		}
+	}
+}

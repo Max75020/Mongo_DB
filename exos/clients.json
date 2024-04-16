@@ -1,0 +1,17 @@
+[
+	{
+		"nom": "Dupont",
+		"email": "dupont@gmail.com",
+		"adress": "10 rue des Lilas"
+	},
+	{
+		"nom": "Martin",
+		"email": "martin@gmail.com",
+		"adress": "15 avenue de la République"
+	},
+	{
+		"nom": "Dumas",
+		"email": "dumas@gmail.com",
+		"adress": "25 rue de la Paix"
+	}
+]

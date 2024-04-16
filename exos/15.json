@@ -1,0 +1,8 @@
+//Retrouver toutes les commandes de M. Dupont contenant un produit du type « Iphone 12 » ou dont la quantité est au moins de 2.
+db.orders.find({
+	client_id: ObjectId("661d4020d859124a820e87d7"),
+	$or: [
+		{ "products.product_id": ObjectId("661d3fded859124a820e87d1") },
+		{ "products.quantity": { $gte: 2 } }
+	]
+})

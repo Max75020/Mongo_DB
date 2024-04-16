@@ -1,0 +1,2 @@
+// ACTIVITE 19 : Supprimer un produit Supprimer le produit « Nike Air Max 270 ».
+db.products.deleteOne({name: "Nike Air Max 270"});

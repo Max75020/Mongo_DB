@@ -1,0 +1,2 @@
+// Ajouter à tous les clients un « status » avec la valeur « active ».
+db.clients.updateMany({}, {$set: {status: "active"}});

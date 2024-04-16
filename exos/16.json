@@ -1,0 +1,5 @@
+//Passer le MacBook Air à 1249.99€
+db.products.updateOne(
+	{ "product_id": ObjectId("661d3fded859124a820e87d2") },
+	{ $set: { price: 1249.99 } }
+)
