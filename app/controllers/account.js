@@ -1,3 +1,3 @@
 exports.hello = (req, res) => {
-	res.send("Hello User");
+	res.send("Hello Account");
 };
