@@ -17,20 +17,18 @@ const userSchema = new mongoose.Schema({
 	},
 	password: {
 		type: String,
-		require: [true, "Le mot de passe est requis"],
-		trim: true,
+		required: [true, "Password is required"],
 		validate: {
-			validator: function (password) {
-				const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-				return passwordRegex.test(password);
+			validator: function (v) {
+				return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{6,}$/.test(v);
 			},
-			message: "Le mot de passe doit contenir au moins 6 caractères, une lettre majuscule, une lettre minuscule et un chiffre!"
-		}
+			message: (props) =>
+				`Password must contain at least 6 characters, one uppercase, one lowercase, one number and one special character!`,
+		},
 	},
 
 });
-
-userSchema.plugin(uniqueValidator(Schema, { message: "Cet email est déjà utilisé!" }));
+userSchema.plugin(uniqueValidator);
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
