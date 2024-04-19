@@ -4,10 +4,11 @@ const router = express();
 const auth = require("../middlewares/auth.js")
 
 const accountLineCtrl = require("../controllers/account-line.js");
-router.get("/",auth, accountLineCtrl.readAllAccountsLine);
-router.get("/:id",auth, accountLineCtrl.readAccountLine);
-router.post("/",auth, accountLineCtrl.createAccountLine);
-router.put("/:id",auth, accountLineCtrl.updateAccountLine);
-router.delete("/:id",auth, accountLineCtrl.deleteAccountLine);
+router.get("/:accountId",auth, accountLineCtrl.getAllAccountsLine);
+router.post("/:accountId",auth, accountLineCtrl.createAccountLine);
+
+router.get("/:lineId",auth, accountLineCtrl.readAccountLine);
+router.put("/:lineId",auth, accountLineCtrl.updateAccountLine);
+router.delete("/:lineId",auth, accountLineCtrl.deleteAccountLine);
 
 module.exports = router;

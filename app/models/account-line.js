@@ -11,7 +11,7 @@ const accountLineSchema = new mongoose.Schema({
 	type: {
 		type: String,
 		enum: {
-			value: ["credit", "debit"],
+			values: ["credit", "debit"],
 			message: "Le type doit être 'credit' ou 'debit'"
 		},
 		required: [true, "Le type est obligatoire"]
@@ -24,7 +24,7 @@ const accountLineSchema = new mongoose.Schema({
 	method: {
 		type: String,
 		enum: {
-			value: ["cb", "cheque", "virement", "espece"],
+			values: ["cb", "cheque", "virement", "espece"],
 			message: "La méthode doit être 'cb', 'cheque', 'virement' ou 'espece'",
 		},
 		required: [true, "La méthode est obligatoire"]
@@ -47,6 +47,16 @@ const accountLineSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	}
+});
+
+accountLineSchema.pre("save", function (next) {
+	this.lastUpdated = Date.now();
+	next();
+});
+
+accountLineSchema.pre("findOneAndUpdate", function (next) {
+	this.lastUpdated = Date.now();
+	next();
 });
 
 const AccountLine = mongoose.model("AccountLine", accountLineSchema);
